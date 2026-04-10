@@ -22,6 +22,12 @@ body {
     max-width: 100vw;
 }
 
+h1:hover{
+    background: white !important;
+    color: #000000 !important;
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0px 0px #000000;
+}
 /* ================================================
    NAVIGATION BAR
    ================================================ */
@@ -58,9 +64,19 @@ body {
 .img-placeholder {
   width: 100%;
   aspect-ratio: 1 / 1;
-  background-color: #f0f0f0;
   display: block;
   border: 5px solid rgb(69, 55, 50);
+  background-color: #cab5b5; /* Keeps the card readable */
+  border: 4px solid #000000; /* Thick blocky border */
+  box-shadow: 8px 8px 0px 0px #000000; /* Hard, non-blurry shadow */
+  padding: 20px;
+  margin-bottom: 25px; /* Spacing between cards */
+  border-radius: 0px;  /* Keeps it blocky and sharp */
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.img-placeholder:hover {
+  transform: scale(1.02);
 }
 
 /* ================================================
@@ -69,7 +85,7 @@ body {
 
 #landing {
     height: 100vh;
-    background-color: rgb(39, 96, 39);
+    background-color: #AF7AC5;
 }
 
 #landing h2 {
@@ -148,26 +164,37 @@ body {
    ================================================ */
 
 #about {
-    background-color: #f3fa8f;
+    background-color: #48C9B0;
     border-top: 3px solid #000000;
 }
 
 #about h1{
-    border: #000000 solid 5px;
-    font-family: 'Roboto Flex', sans-serif;
+    background: #fffacd;
+    border: 4px solid #000000;
+    box-shadow: 6px 6px 0px 0px #000000;
     font-weight: bold;
     font-weight: 800;
-    font-size: 2rem;
-    color: rgb(0, 0, 0);
+    font-family: 'Roboto Flex', sans serif;
     text-transform: uppercase;
-    padding: 3% 5%;
+    color: #000000;
+    padding: 8px 18px;
+    margin-bottom: 6px;
+    transition: all 0.5s ease;
 }
 
 #about .bio {
-    border: 4px solid #000000;
-    border-radius: 0;
-    margin-bottom: 1rem;
-    background-color: #d1fad100;
+  background-color: #ffffff; /* Keeps the card readable */
+  border: 4px solid #000000; /* Thick blocky border */
+  box-shadow: 8px 8px 0px 0px #000000; /* Hard, non-blurry shadow */
+  padding: 20px;
+  margin-bottom: 0px; /* Spacing between cards */
+  border-radius: 0px;  /* Keeps it blocky and sharp */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bio:hover {
+  transform: rotate(0deg) translate(-2px, -2px);
+  box-shadow: 12px 12px 0px 0px #000000;
 }
 
 #bio-2 p{
@@ -181,11 +208,20 @@ body {
     padding: 0%;
     font-weight: 700;
 }
+
 #about .accordion-item {
-    border: 4px solid #000000;
-    border-radius: 0;
-    margin-bottom: 1rem;
-    background-color: #d1fad100;
+  background-color: #ffffff; /* Keeps the card readable */
+  border: 4px solid #000000; /* Thick blocky border */
+  box-shadow: 8px 8px 0px 0px #000000; /* Hard, non-blurry shadow */
+  padding: 2px;
+  margin-bottom: 25px; /* Spacing between cards */
+  border-radius: 0px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.accordion-item:hover {
+  transform: rotate(0deg) translate(-2px, -2px);
+  box-shadow: 12px 12px 0px 0px #000000;
 }
 
 #about button {
@@ -210,34 +246,70 @@ body {
     font-weight: 700;
 }
 
+.personality-tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.personality-tag {
+    display: inline-block;
+    white-space: nowrap;
+    background: #fffacd;
+    border: 4px solid #000000;
+    box-shadow: 6px 6px 0px 0px #000000;
+    font-weight: bold;
+    font-family: 'Roboto Mono', monospace;
+    text-transform: uppercase;
+    color: #000000;
+    padding: 8px 18px;
+    margin-bottom: 6px;
+    transition: all 0.2s ease;
+}
+
+.personality-tag:hover {
+  background: white;
+  transform: translate(-3px, -3px);
+  box-shadow: 9px 9px 0px 0px #000000;
+}
+
 /* ================================================
    PROJECTS SECTION & CAROUSEL
    ================================================ */
 
 #projects {
-    background-color: rgb(216, 140, 40);
+    background-color: #F4D03F;
 }
 
 #projects h1 {
-    border: #000000 solid 5px;
-    font-family: 'Roboto Flex', sans-serif;
+    background: #fffacd;
+    border: 4px solid #000000;
+    box-shadow: 6px 6px 0px 0px #000000;
     font-weight: bold;
     font-weight: 800;
-    font-size: 2rem;
-    color: rgb(0, 0, 0);
+    font-family: 'Roboto Flex', sans serif;
     text-transform: uppercase;
-    padding: 2% 2%;
+    color: #000000;
+    padding: 8px 18px;
+    margin-bottom: 6px;
+    transition: all 0.5s ease;
 }
 
 #projects h2 {
-    font-size: 1.3rem;
+    background: #fffacd;
+    border: 4px solid #000000;
+    box-shadow: 6px 6px 0px 0px #000000;
     font-weight: bold;
-    color: #333;
-    border: 4px solid black;
-    margin: 1% 0% 0% 0%;
-    padding: 10px;
-    color: black;
-    font-weight: 600;
+    font-weight: 800;
+    font-family: 'Roboto Flex', sans serif;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    color: #000000;
+    padding: 8px 18px;
+    margin-bottom: 6px;
+    transition: all 0.5s ease;
 }
 
 #projects h5 {
@@ -247,6 +319,10 @@ body {
 
 .carousel-dark {
     border: 6px solid #000000;
+    height: 50vh;
+    min-height: 400px;
+    overflow: hidden;
+    box-shadow: 10px 10px 0px 0px #000000;
 }
 .carousel-item {
     height: 50vh;
@@ -327,11 +403,11 @@ body {
     background-color: rgba(255, 159, 112, 0.964) !important;
 }
 
-h1, #projects h2 {
+#projects h2 {
     transition: all 0.3s ease;
 }
 
-h1:hover, #projects h2:hover {
+#projects h2:hover {
     background-color: #0d1117;
     color: white !important;
 }
@@ -340,17 +416,20 @@ h1:hover, #projects h2:hover {
    ================================================ */
 
 #tools {
-    background-color: rgb(218, 11, 173);
+    background-color: #EB984E;
 }
 #tools h1 {
-    border: #000000 solid 5px;
-    font-family: 'Roboto Flex', sans-serif;
+    background: #fffacd;
+    border: 4px solid #000000;
+    box-shadow: 6px 6px 0px 0px #000000;
     font-weight: bold;
     font-weight: 800;
-    font-size: 2rem;
-    color: rgb(0, 0, 0);
+    font-family: 'Roboto Flex', sans serif;
     text-transform: uppercase;
-    padding: 2% 2%;
+    color: #000000;
+    padding: 8px 18px;
+    margin-bottom: 6px;
+    transition: all 0.5s ease;
 }
 
 .tool-border {
@@ -358,10 +437,15 @@ h1:hover, #projects h2:hover {
     padding: 15px;
     display: inline-block;
     transition: all 0.3s ease;
+    background-color: #4E9FEB;
+    border: 4px solid #000000;
+    box-shadow: 10px 10px 0px 0px #000000;
+    transition: all 0.5s ease;
 }
 
 .tool-border:hover {
-    scale: 1.25;
+    transform: translate(-3px, -3px);
+    box-shadow: 14px 14px 0px 0px #000000;
 }
 
 .tool-border h2 {
@@ -405,7 +489,7 @@ h1:hover, #projects h2:hover {
 
 #contact {
     height: auto;
-    background-color: rgb(228, 164, 152);
+    background-color: #DCAE96;
     padding: 2rem !important;
     overflow-x: hidden;
 }
@@ -413,7 +497,6 @@ h1:hover, #projects h2:hover {
 #contact h1 {
     border: #000000 solid 5px;
     font-family: 'Roboto Flex', sans-serif;
-    font-weight: bold;
     font-weight: 800;
     font-size: 2rem;
     color: rgb(0, 0, 0);
@@ -421,6 +504,10 @@ h1:hover, #projects h2:hover {
     padding: 2% 2%;
     text-align: center;
     margin: 0 25% 2%;
+    background-color: #fffacd;
+    box-shadow: 8px 8px 0px 0px #000000; 
+    border-radius: 0px;
+    transition: all 0.5s ease;
 }
 
 /* ================================================
