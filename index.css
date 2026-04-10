@@ -57,107 +57,202 @@ h1:hover{
     color: white;
 }
 
-/* ================================================
-   IMAGE PLACEHOLDER
-   ================================================ */
-
-.img-placeholder {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  display: block;
-  border: 5px solid rgb(69, 55, 50);
-  background-color: #cab5b5; /* Keeps the card readable */
-  border: 4px solid #000000; /* Thick blocky border */
-  box-shadow: 8px 8px 0px 0px #000000; /* Hard, non-blurry shadow */
-  padding: 20px;
-  margin-bottom: 25px; /* Spacing between cards */
-  border-radius: 0px;  /* Keeps it blocky and sharp */
-  transition: transform 0.5s ease, box-shadow 0.5s ease;
-}
-
-.img-placeholder:hover {
-  transform: scale(1.02);
-  box-shadow: 12px 12px 0px 0px #000000 !important;
-}
 
 /* ================================================
    LANDING SECTION
    ================================================ */
 
-#landing {
-    height: 100vh;
-    background-color: #AF7AC5;
+/* --- Variables & Sections --- */
+.section-yellow {
+  background-color: #FFFF00;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
 }
 
-#landing h2 {
-    font-family: 'Roboto Slab', sans-serif;
-    font-size: 5em;
-    font-weight: bold;
-    color: #333;
-    border: 5px solid white;
-    margin: 15% 8% 2%;
-    padding: 1%;
-    text-transform: uppercase;
-    color: white;
-    font-weight: 900;
-    transition: all .5s ease;
-    letter-spacing: 2px;
+/* --- Layout Containers --- */
+.landing-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5; /* Keeps text above stickers if they overlap */
 }
 
-#landing h4 {
-    font-family: 'Roboto Flex', sans-serif;
-    font-size: 1.4em;
-    font-weight: bold;
-    font-weight: 400;
-    color: #333;
-    border: 4px solid white;
-    margin: 1% 25%;
-    padding: 10px;
-    color: white;
-    text-transform: uppercase;
-    transition: all .5s ease;
+.hero-card {
+    background-color: white;
+    border: 6px solid black;
+    padding: 4rem 2rem;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    
+    /* The Shadow makes it pop off the yellow background */
+    box-shadow: 20px 20px 0px 0px black;
+    
+    /* Responsiveness */
+    width: 90%;
+    max-width: 900px;
+    margin: auto;
 }
 
-#landing p {
-    font-family: 'Roboto Serif', sans-serif;
-    font-size: 1.2rem;
-    font-style: italic;
-    font-weight: 200;
-    color: #333;
-    margin: 1% 25% 2%;
-    padding: 10px;
-    color: white;
-    text-decoration: 0.1px underline;
-    text-underline-offset: 10px;
-    transition: all .5s ease;
+/* Container for the name */
+.hero-title {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 900;
+  cursor: default;
+  display: block;
+  white-space: normal; /* ✅ Allows the name to wrap on small screens */
+  word-break: break-word; /* ✅ Prevents letters from spilling outside the card */
 }
 
-#landing h2:hover, #landing h4:hover, #landing p:hover {
-    transform: rotate(2deg);
-    color: white;
+/* Base style for each letter */
+.hover-letter {
+  display: inline-block; /* Critical for animation to work */
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy feel */
+  color: black;
 }
 
-#landing button {
-    display: inline-block;
-    padding: 20px 40px;
-    background-color: #0d1117;
-    color: #ffffff;
-    margin-bottom: 5%;
-    font-family: 'Roboto Mono', sans-serif;
-    font-size: 1rem;
-    font-weight: 900;
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    border: none;
+/* The Hover Animation */
+.hover-letter:hover {
+  transform: translateY(-15px) scale(1.2) rotate(5deg);
+  color: #dd9145; /* Changes to one of your Post-it colors on hover */
+  text-shadow: 4px 4px 0px #000; /* Adds a blocky shadow behind the letter */
+}
+
+/* Make every other letter tilt the opposite way */
+.hover-letter:nth-child(even):hover {
+  transform: translateY(-15px) scale(1.2) rotate(-5deg);
+}
+
+.job-title-box {
+    perspective: 1000px;
+    height: 40px;
     cursor: pointer;
-    transition: all 0.5s ease;
+    font-weight: 800;
+    width: fit-content;
+    max-width: 90%; /* Prevents the box from hitting the screen edges */
+    margin: 1.5rem auto;
+    text-align: center;
 }
 
-#landing button:hover {
-    background-color: #9ea16f;
-    color: #ffffff;
-    transform: scale(1.2);
+.title-front, .title-back {
+    display: block;
+    border: 3px solid black;
+    font-size: clamp(0.9rem, 2.5vw, 1.2rem); 
+    padding: 8px 15px; 
+    white-space: nowrap;
+    padding: 5px 20px;
+    background: white;
+    backface-visibility: hidden;
+    display: block;
+    width: 100%;        
+    text-align: center;
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.title-back {
+  background: #87CEEB; /* Post-it Blue */
+  position: absolute;
+  top: 0;
+  transform: rotateX(-180deg);
+}
+
+.job-title-box:hover .title-front { transform: rotateX(180deg); }
+.job-title-box:hover .title-back { transform: rotateX(0deg); }
+
+/* Job Title */
+.hero-subtitle {
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.motto-type {
+    font-family: 'Roboto Slab', sans-serif;
+    font-weight: bold;
+    font-size: clamp(0.9rem, 2vw, 1.2rem);
+    line-height: 1.6;
+    text-align: center;
+
+    /* Prevent overflow */
+    display: block;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 10px;
+    box-sizing: border-box;
+
+    white-space: normal;        /* Allows wrapping */
+    overflow-wrap: break-word;  /* Prevents text spill */
+    word-break: normal;
+    overflow: visible;
+}
+
+/* --- Custom Blocky Button --- */
+.btn-blocky {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 10px 25px;
+  background-color: #000;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 900;
+  border: 3px solid black;
+  transition: all 0.1s ease;
+}
+
+.btn-blocky:hover {
+  background-color: #fff;
+  color: #000;
+  transform: translate(-4px, -4px);
+  box-shadow: 4px 4px 0px black;
+}
+
+/* --- Sticker System --- */
+.sticker {
+  position: absolute;
+  padding: 12px 24px;
+  border: 4px solid black;
+  font-weight: 900;
+  text-transform: uppercase;
+  box-shadow: 8px 8px 0px black;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  animation: float 5s ease-in-out infinite;
+  display: none; /* Hidden on mobile */
+}
+
+/* Show stickers on medium screens and up */
+@media (min-width: 768px) {
+  .sticker { display: block; }
+}
+
+.sticker:hover {
+  animation-play-state: paused;
+  transform: scale(1.1) rotate(0deg) !important;
+  box-shadow: 12px 12px 0px black;
+  z-index: 20;
+}
+
+/* Sticker Colors */
+.sticker-pink   { background-color: #FF6AD5; }
+.sticker-blue   { background-color: #87CEEB; }
+.sticker-green  { background-color: #98FF98; }
+.sticker-orange { background-color: #FFB347; }
+
+/* Sticker Positions */
+.sticker-pos-1 { top: 15%; left: 8%;  animation-delay: 0s; }
+.sticker-pos-2 { top: 18%; right: 8%; animation-delay: 1s; }
+.sticker-pos-3 { bottom: 10%; left: 12%; animation-delay: 2s; }
+.sticker-pos-4 { bottom: 8%; right: 15%; animation-delay: 0.5s; }
+
+/* --- Floating Animation --- */
+@keyframes float {
+  0%   { transform: translateY(0px) rotate(-3deg); }
+  50%  { transform: translateY(-25px) rotate(3deg); }
+  100% { transform: translateY(0px) rotate(-3deg); }
 }
 
 /* ================================================
@@ -171,8 +266,8 @@ h1:hover{
 
 #about h1{
     background: #fffacd;
-    border: 4px solid #000000;
-    box-shadow: 6px 6px 0px 0px #000000;
+    outline: 4px solid #000000;
+    box-shadow: 9px 9px 0px 0px #000000;
     font-weight: bold;
     font-weight: 800;
     font-family: 'Roboto Flex', sans serif;
@@ -185,9 +280,9 @@ h1:hover{
 
 #about .bio {
   background-color: #ffffff; /* Keeps the card readable */
-  border: 4px solid #000000; /* Thick blocky border */
-  box-shadow: 8px 8px 0px 0px #000000; /* Hard, non-blurry shadow */
-  padding: 20px;
+  outline: 4px solid #000000; /* Thick blocky border */
+  box-shadow: 11px 11px 0px 0px #000000; /* Hard, non-blurry shadow */
+  padding: 5px;
   margin-bottom: 0px; /* Spacing between cards */
   border-radius: 0px;  /* Keeps it blocky and sharp */
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -195,7 +290,7 @@ h1:hover{
 
 .bio:hover {
   transform:translate(-2px, -2px);
-  box-shadow: 11px 11px 0px 0px #000000 !important;
+  box-shadow: 13px 13px 0px 0px #000000 !important;
 }
 
 #bio-2 p{
@@ -211,18 +306,19 @@ h1:hover{
 }
 
 #about .accordion-item {
-  background-color: #ffffff; /* Keeps the card readable */
-  border: 4px solid #000000; /* Thick blocky border */
-  box-shadow: 8px 8px 0px 0px #000000; /* Hard, non-blurry shadow */
-  padding: 2px;
-  margin-bottom: 25px; /* Spacing between cards */
-  border-radius: 0px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-family: 'Roboto Mono', monospace !important;
+    background-color: #ffffff; /* Keeps the card readable */
+    outline: 4px solid #000000; /* Thick blocky border */
+    box-shadow: 11px 11px 0px 0px #000000; /* Hard, non-blurry shadow */
+    padding: 0px;
+    margin-bottom: 25px; /* Spacing between cards */
+    border-radius: 0px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .accordion-item:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 11px 11px 0px 0px #000000 !important;
+    transform: translate(-2px, -2px);
+    box-shadow: 13px 13px 0px 0px #000000 !important;
 }
 
 #about button {
@@ -259,21 +355,44 @@ h1:hover{
     display: inline-block;
     white-space: nowrap;
     background: #fffacd;
-    border: 4px solid #000000;
-    box-shadow: 6px 6px 0px 0px #000000;
+    outline: 4px solid #000000;
+    box-shadow: 8px 8px 0px 0px #000000;
     font-weight: bold;
     font-family: 'Roboto Mono', monospace;
     text-transform: uppercase;
     color: #000000;
     padding: 8px 18px;
-    margin-bottom: 6px;
+    margin: 0px 6px 6px;
     transition: all 0.2s ease;
 }
 
 .personality-tag:hover {
   background: white;
   transform: translate(-3px, -3px);
-  box-shadow: 9px 9px 0px 0px #000000;
+  box-shadow: 11px 11px 0px 0px #000000;
+}
+
+/* ================================================
+   IMAGE PLACEHOLDER -- ABOUT SECTION
+   ================================================ */
+
+.img-placeholder {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: block;
+
+  background-color: #cab5b5; /* Keeps the card readable */
+  outline: 4px solid #000000; /* Thick blocky border */
+  box-shadow: 13px 13px 0px 0px #000000; /* Hard, non-blurry shadow */
+  padding: 20px;
+  margin-bottom: 25px; /* Spacing between cards */
+  border-radius: 0px;  /* Keeps it blocky and sharp */
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.img-placeholder:hover {
+  transform:translate(-3px, -3px);
+  box-shadow: 16px 16px 0px 0px #000000 !important;
 }
 
 /* ================================================
@@ -286,8 +405,8 @@ h1:hover{
 
 #projects h1 {
     background: #fffacd;
-    border: 4px solid #000000;
-    box-shadow: 6px 6px 0px 0px #000000;
+    outline: 4px solid #000000;
+    box-shadow: 9px 9px 0px 0px #000000;
     font-weight: bold;
     font-weight: 800;
     font-family: 'Roboto Flex', sans serif;
@@ -319,23 +438,25 @@ h1:hover{
 }
 
 .carousel-dark {
-    border: 6px solid #000000;
+    outline: 6px solid #000000;
     height: 50vh;
-    min-height: 400px;
+    min-height: 200px;
     overflow: hidden;
     box-shadow: 10px 10px 0px 0px #000000;
 }
+
 .carousel-item {
+    width: 100%;
     height: 50vh;
     min-height: 400px;
     overflow: hidden;
 }
 
 .carousel-item img {
-    height: 100%;
+    height: 100% !important; /* Forces the image to touch the bottom border */
     width: 100%;
     display: block;
-    object-fit: cover;
+    object-fit: cover; /* Prevents the image from looking squished */
     object-position: center;
 }
 
@@ -421,8 +542,8 @@ h1:hover{
 }
 #tools h1 {
     background: #fffacd;
-    border: 4px solid #000000;
-    box-shadow: 6px 6px 0px 0px #000000;
+    outline: 4px solid #000000;
+    box-shadow: 9px 9px 0px 0px #000000;
     font-weight: bold;
     font-weight: 800;
     font-family: 'Roboto Flex', sans serif;
@@ -496,7 +617,7 @@ h1:hover{
 }
 
 #contact h1 {
-    border: #000000 solid 5px;
+    outline: #000000 solid 5px;
     font-family: 'Roboto Flex', sans-serif;
     font-weight: 800;
     font-size: 2rem;
@@ -661,18 +782,6 @@ footer {
    ================================================ */
 
 @media (max-width: 768px) {
-    .carousel-item {
-        height: 300px;
-    }
-
-    .carousel-title h5 {
-        font-size: 0.75rem;
-        white-space: normal;
-    }
-
-    .carousel-caption {
-        display: none;
-    }
 
     #landing h2 {
         font-size: 3rem;
@@ -698,13 +807,19 @@ footer {
         font-size: 1.8rem;
     }
 
-    .carousel-item {
-        height: 350px;
-        min-height: 350px;
-    }
-
     .carousel-title h5 {
         font-size: 0.8rem;
+    }
+
+    .carousel-caption {
+        display: none;
+    }
+
+    .carousel-item img {
+        height: 100% !important;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
     }
 
     .row.g-3 {
@@ -735,6 +850,54 @@ footer {
         padding: 6px 12px;
         flex-shrink: 0;
     }
+
+    /* ✅ Your existing rules stay — ADD these below them */
+
+    /* Fix: Name size on tablet screens */
+    .hero-title {
+        font-size: clamp(2.8rem, 10vw, 4rem) !important;
+        line-height: 1.1;
+        margin-top: 0.3rem !important;
+        word-break: break-word;
+        white-space: normal;
+    }
+
+    /* Fix: Reduce card padding so it doesn't grow too tall */
+    .hero-card {
+        padding: 2.5rem 1.5rem;       /* Was 4rem 2rem — too much vertical space */
+        box-shadow: 12px 12px 0px 0px black; /* Slightly smaller shadow */
+        width: 92%;
+    }
+
+    /* Fix: Reduce spacing inside card */
+    .hero-card hr {
+        margin: 0.75rem 0;
+    }
+
+    /* Fix: Motto overflow — cap it at card width */
+
+
+    /* Fix: Button margin */
+    .btn-blocky {
+        margin-top: 1rem;
+    }
+
+    /* Fix: Yellow section padding */
+    .section-yellow {
+        padding: 2rem 0.5rem;
+        align-items: center;
+    }
+
+    /* Fix: Name divs stack and center cleanly (since you split first/last name) */
+    .hero-title div {
+        margin-top: 0.3rem !important;
+        display: block;
+        text-align: center;
+        line-height: 1.1;
+    }
+
+
+
 }
 
 /* ================================================
@@ -742,6 +905,7 @@ footer {
    ================================================ */
 
 @media (max-width: 576px) {
+   
     #landing h2 {
         font-size: 2rem;
         margin: 20% 5% 5%;
@@ -749,7 +913,7 @@ footer {
     }
 
     #landing h4 {
-        font-size: 1rem;
+        font-size: 6rem;
         margin: 5% 10%;
         padding: 8px;
     }
@@ -784,21 +948,27 @@ footer {
         letter-spacing: 1px;
     }
 
-    .carousel-item {
-        height: 250px;
-        min-height: 250px;
-    }
-
     .carousel-title h5 {
         font-size: 0.65rem;
     }
 
-    .tool-border h2 {
-        font-size: 1rem;
+    .carousel-dark {
+        height: 30vh;
+        min-height: 100px;
     }
 
+    .carousel-dark img {
+        width: 100%;
+        height: auto;
+        object-fit: unset;
+    }
+    
     .tool-border {
         padding: 8px;
+    }
+
+    .tool-border h2 {
+        font-size: 1rem;
     }
 
     .img-placeholder {
@@ -825,6 +995,60 @@ footer {
         padding-right: 0.5rem;
         padding-left: 0.5rem;
     }
+
+    .title-front, .title-back {
+    padding: 6px 10px;
+    border-width: 3px; /* Slightly thinner border for small screens */
+    }
+
+    .hero-card {
+        box-shadow: 8px 8px 0px 0px black;
+        padding: 1rem 1rem !important; /* ✅ Also reduce padding so content has more space */
+    }
+
+    .hero-title div {
+        margin-top: 0.3rem !important;
+        display: block;
+        text-align: center;
+        line-height: 1.1;
+    }
+
+    .hero-title {
+        font-size: clamp(2.8rem, 10vw, 4rem) !important;
+        line-height: 1.1;
+        margin-top: 0.3rem !important;
+        word-break: break-word;
+        white-space: normal;
+    }
+
+        /* Fix: Reduce card padding so it doesn't grow too tall */
+    .hero-card {
+        padding: 2.5rem 1.5rem;       /* Was 4rem 2rem — too much vertical space */
+        box-shadow: 12px 12px 0px 0px black; /* Slightly smaller shadow */
+        width: 92%;
+    }
+
+    /* Fix: Reduce spacing inside card */
+    .hero-card hr {
+        margin: 0.75rem 0;
+    }
+
+    .job-title-box {
+        margin-top: -2%;
+    }
+
+
+    /* Fix: Button margin */
+    .btn-blocky {
+        margin-top: 1rem;
+    }
+
+    /* Fix: Yellow section padding */
+    .section-yellow {
+        padding: 2rem 0.5rem;
+        align-items: center;
+    }
+
 }
 
 /* ================================================
